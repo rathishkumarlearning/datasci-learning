@@ -3036,9 +3036,9 @@ total_sales = df['sales'].sum()
 total_profit = df['profit'].sum()
 avg_order = df['sales'].mean()
 
-print(f"Total Sales: ${total_sales:,.2f}")
-print(f"Total Profit: ${total_profit:,.2f}")
-print(f"Average Order: ${avg_order:.2f}")
+print(f"Total Sales: $\{total_sales:,.2f}")
+print(f"Total Profit: $\{total_profit:,.2f}")
+print(f"Average Order: $\{avg_order:.2f}")
 print(f"Profit Margin: {total_profit/total_sales*100:.1f}%")
 
 # Sales over time
@@ -3173,13 +3173,13 @@ findings = """
 === SALES DATA ANALYSIS REPORT ===
 
 1. OVERALL PERFORMANCE
-   - Total Revenue: ${:,.0f}
-   - Total Profit: ${:,.0f}
+   - Total Revenue: $\{:,.0f}
+   - Total Profit: $\{:,.0f}
    - Overall Profit Margin: {:.1f}%
-   - Average Order Value: ${:.2f}
+   - Average Order Value: $\{:.2f}
 
 2. TOP PERFORMERS
-   - Best Category: {} (${:,.0f})
+   - Best Category: {} ($\{:,.0f})
    - Most Profitable Region: {}
    - Peak Month: {} {}
 
