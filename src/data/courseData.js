@@ -149,6 +149,31 @@ jupyter notebook
 \`\`\`
 
 Let's begin your data science journey! 🚀
+### 🎯 Practice Exercise
+
+**Exercise: Data Science in Your World**
+
+1. Pick an industry you're interested in (gaming, music, sports, etc.)
+2. List 3 questions that data science could answer in that industry
+3. For each question, identify what data you'd need to collect
+4. Classify each question as descriptive, diagnostic, predictive, or prescriptive
+
+\`\`\`python
+# Example template:
+industry = "Music Streaming"
+questions = {
+    "descriptive": "What are the top 10 most-played songs this month?",
+    "diagnostic": "Why did user engagement drop in Q3?",
+    "predictive": "Which new artists will go viral next quarter?",
+    "prescriptive": "What playlist recommendations maximize listening time?"
+}
+
+for q_type, question in questions.items():
+    print(f"[{q_type.upper()}] {question}")
+\`\`\`
+
+Try creating your own for a different industry!
+
           `
         },
         {
@@ -568,6 +593,38 @@ print(matrix.sum(axis=1))  # [3 7 11] - sum each row
 </warning>
 
 NumPy is the foundation — master it before moving to Pandas! 💪
+### 🎯 Practice Exercise
+
+**Exercise: NumPy Array Workout**
+
+Try these challenges in a Jupyter notebook:
+
+\`\`\`python
+import numpy as np
+
+# Challenge 1: Create a 5x5 identity matrix
+identity = np.eye(5)
+print("Identity matrix:\n", identity)
+
+# Challenge 2: Create an array of 20 evenly spaced values between 0 and 1
+linspace_arr = np.linspace(0, 1, 20)
+print("\nLinspace:", linspace_arr)
+
+# Challenge 3: Create a 3x3 matrix of random integers between 1 and 100
+random_matrix = np.random.randint(1, 101, size=(3, 3))
+print("\nRandom matrix:\n", random_matrix)
+
+# Challenge 4: Calculate the mean of each row and column
+print("Row means:", random_matrix.mean(axis=1))
+print("Column means:", random_matrix.mean(axis=0))
+
+# Challenge 5: Normalize the matrix (subtract mean, divide by std)
+normalized = (random_matrix - random_matrix.mean()) / random_matrix.std()
+print("\nNormalized:\n", normalized)
+\`\`\`
+
+**Bonus:** Create a function that generates a "heatmap" using NumPy arrays and prints it with symbols (█ for high values, ░ for low values).
+
           `
         },
         {
@@ -797,6 +854,38 @@ print(np.vsplit(arr, 3))  # Split into 3 vertically
 </warning>
 
 You now have a solid NumPy foundation! 🎓
+### 🎯 Practice Exercise
+
+**Exercise: NumPy Advanced Operations**
+
+\`\`\`python
+import numpy as np
+
+# Challenge 1: Broadcasting - Add a bias vector to each row
+matrix = np.random.randn(4, 3)
+bias = np.array([1.0, -0.5, 0.2])
+result = matrix + bias
+print("Broadcasted result:\n", result)
+
+# Challenge 2: Solve this system of equations using np.linalg.solve
+# 2x + 3y = 8
+# 4x + y = 10
+A = np.array([[2, 3], [4, 1]])
+b = np.array([8, 10])
+solution = np.linalg.solve(A, b)
+print(f"\nx = {solution[0]:.2f}, y = {solution[1]:.2f}")
+
+# Challenge 3: Use np.where to categorize test scores
+scores = np.array([92, 65, 78, 45, 88, 55, 73, 96])
+grades = np.where(scores >= 90, 'A',
+         np.where(scores >= 80, 'B',
+         np.where(scores >= 70, 'C',
+         np.where(scores >= 60, 'D', 'F'))))
+print("\nGrades:", grades)
+\`\`\`
+
+Try modifying the score thresholds and adding a +/- system (A+, A, A-, etc.)!
+
           `
         }
       ]
@@ -1016,6 +1105,42 @@ df['value'] = df['value'].interpolate()
 \`\`\`
 
 Pandas is your best friend for data analysis! 🤝
+### 🎯 Practice Exercise
+
+**Exercise: Pandas DataFrame Explorer**
+
+\`\`\`python
+import pandas as pd
+
+# Create a sample dataset
+data = {
+    'name': ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank'],
+    'department': ['Engineering', 'Marketing', 'Engineering', 'Sales', 'Marketing', 'Sales'],
+    'salary': [95000, 65000, 88000, 72000, 71000, 68000],
+    'years_exp': [5, 2, 4, 3, 3, 1],
+    'rating': [4.5, 3.8, 4.2, 4.0, 4.7, 3.5]
+}
+df = pd.DataFrame(data)
+
+# Challenge 1: Filter employees with salary > 70000 AND rating > 4.0
+high_performers = df[(df['salary'] > 70000) & (df['rating'] > 4.0)]
+print("High performers:\n", high_performers)
+
+# Challenge 2: Calculate average salary by department
+avg_salary = df.groupby('department')['salary'].mean()
+print("\nAvg salary by dept:\n", avg_salary)
+
+# Challenge 3: Add a 'salary_per_year_exp' column
+df['salary_per_year'] = df['salary'] / df['years_exp']
+print("\nSalary efficiency:\n", df[['name', 'salary_per_year']])
+
+# Challenge 4: Sort by rating descending, then by salary descending
+sorted_df = df.sort_values(['rating', 'salary'], ascending=[False, False])
+print("\nSorted:\n", sorted_df)
+\`\`\`
+
+**Bonus:** Add 5 more employees and create a "promotion_eligible" column based on custom criteria.
+
           `
         },
         {
@@ -1249,6 +1374,45 @@ df_wide_again = df_long.pivot(index='name', columns='subject', values='score')
 </warning>
 
 You can now wrangle any dataset! 💪
+### 🎯 Practice Exercise
+
+**Exercise: Advanced Pandas Operations**
+
+\`\`\`python
+import pandas as pd
+import numpy as np
+
+# Create two related DataFrames
+orders = pd.DataFrame({
+    'order_id': range(1, 8),
+    'customer_id': [101, 102, 101, 103, 102, 104, 101],
+    'product': ['Laptop', 'Phone', 'Tablet', 'Laptop', 'Laptop', 'Phone', 'Phone'],
+    'amount': [1200, 800, 450, 1200, 1200, 800, 800],
+    'date': pd.date_range('2024-01-01', periods=7)
+})
+
+customers = pd.DataFrame({
+    'customer_id': [101, 102, 103, 104, 105],
+    'name': ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve'],
+    'city': ['NYC', 'LA', 'NYC', 'Chicago', 'LA']
+})
+
+# Challenge 1: Merge orders with customer names
+merged = orders.merge(customers, on='customer_id', how='left')
+print(merged)
+
+# Challenge 2: Create a pivot table - total spend per customer per product
+pivot = orders.pivot_table(values='amount', index='customer_id', 
+                           columns='product', aggfunc='sum', fill_value=0)
+print("\nPivot table:\n", pivot)
+
+# Challenge 3: Calculate running total of amounts per customer
+orders['running_total'] = orders.groupby('customer_id')['amount'].cumsum()
+print("\nRunning totals:\n", orders[['order_id', 'customer_id', 'amount', 'running_total']])
+\`\`\`
+
+**Bonus:** Find which city generates the most revenue and which product is most popular per city.
+
           `
         }
       ]
@@ -1468,6 +1632,49 @@ df['city'] = df['city'].apply(lambda x: match_category(x, standard_cities))
 </warning>
 
 Clean data = reliable analysis! 🎯
+### 🎯 Practice Exercise
+
+**Exercise: Clean a Messy Dataset**
+
+\`\`\`python
+import pandas as pd
+import numpy as np
+
+# Create a deliberately messy dataset
+messy_data = pd.DataFrame({
+    'Name': ['Alice', 'bob', 'CHARLIE', None, 'Eve', 'Alice'],
+    'Age': [25, 300, 35, 28, -5, 25],
+    'Email': ['alice@email.com', 'bob@email', 'charlie@email.com', 
+              'diana@email.com', None, 'alice@email.com'],
+    'Salary': ['$50,000', '$60,000', None, '$45,000', '$70,000', '$50,000'],
+    'Join_Date': ['2024-01-15', '01/20/2024', '2024-02-01', 
+                  'invalid', '2024-03-10', '2024-01-15']
+})
+
+print("MESSY DATA:")
+print(messy_data)
+
+# Challenge 1: Standardize names (Title Case)
+messy_data['Name'] = messy_data['Name'].str.title()
+
+# Challenge 2: Handle invalid ages (replace with NaN if outside 18-100)
+messy_data.loc[~messy_data['Age'].between(18, 100), 'Age'] = np.nan
+
+# Challenge 3: Clean salary column (remove $ and commas, convert to float)
+messy_data['Salary'] = messy_data['Salary'].str.replace('[\$,]', '', regex=True).astype(float)
+
+# Challenge 4: Remove duplicates
+messy_data = messy_data.drop_duplicates()
+
+# Challenge 5: Fill missing values appropriately
+messy_data['Age'] = messy_data['Age'].fillna(messy_data['Age'].median())
+
+print("\nCLEANED DATA:")
+print(messy_data)
+\`\`\`
+
+Try adding more types of mess (extra whitespace, mixed data types) and cleaning them!
+
           `
         },
         {
@@ -1677,6 +1884,43 @@ report, col_stats = data_quality_report(df)
 </warning>
 
 Clean, validated data is the foundation of trustworthy analysis! ✅
+### 🎯 Practice Exercise
+
+**Exercise: Outlier Detection Workshop**
+
+\`\`\`python
+import pandas as pd
+import numpy as np
+
+# Generate dataset with outliers
+np.random.seed(42)
+normal_data = np.random.normal(100, 15, 100)  # Mean 100, std 15
+outliers = np.array([200, 250, 10, 5, 300])
+data = np.concatenate([normal_data, outliers])
+df = pd.DataFrame({'value': data})
+
+# Challenge 1: Detect outliers using IQR method
+Q1 = df['value'].quantile(0.25)
+Q3 = df['value'].quantile(0.75)
+IQR = Q3 - Q1
+lower = Q1 - 1.5 * IQR
+upper = Q3 + 1.5 * IQR
+outliers_iqr = df[(df['value'] < lower) | (df['value'] > upper)]
+print(f"IQR method found {len(outliers_iqr)} outliers")
+
+# Challenge 2: Detect outliers using Z-score method
+from scipy import stats
+z_scores = np.abs(stats.zscore(df['value']))
+outliers_z = df[z_scores > 3]
+print(f"Z-score method found {len(outliers_z)} outliers")
+
+# Challenge 3: Compare methods - which found more?
+print(f"\nIQR range: [{lower:.1f}, {upper:.1f}]")
+print(f"Z-score threshold: mean ± 3*std = [{df['value'].mean()-3*df['value'].std():.1f}, {df['value'].mean()+3*df['value'].std():.1f}]")
+\`\`\`
+
+**Bonus:** Implement a function that lets you choose between "remove", "cap", or "replace with median" strategies for handling outliers.
+
           `
         }
       ]
@@ -1915,6 +2159,54 @@ plt.show()
 </warning>
 
 Matplotlib gives you complete control over every aspect of your visualizations! 🎨
+### 🎯 Practice Exercise
+
+**Exercise: Build a Multi-Panel Dashboard**
+
+\`\`\`python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Sample data
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+revenue = [12000, 15000, 13500, 17000, 16000, 19000]
+expenses = [10000, 11000, 10500, 12000, 11500, 13000]
+customers = [150, 180, 165, 210, 195, 240]
+
+fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+fig.suptitle('Business Dashboard Q1-Q2 2024', fontsize=16)
+
+# Panel 1: Revenue vs Expenses (line chart)
+axes[0,0].plot(months, revenue, 'g-o', label='Revenue')
+axes[0,0].plot(months, expenses, 'r-s', label='Expenses')
+axes[0,0].set_title('Revenue vs Expenses')
+axes[0,0].legend()
+axes[0,0].set_ylabel('Amount ($)')
+
+# Panel 2: Profit (bar chart)
+profit = [r - e for r, e in zip(revenue, expenses)]
+colors = ['green' if p > 0 else 'red' for p in profit]
+axes[0,1].bar(months, profit, color=colors)
+axes[0,1].set_title('Monthly Profit')
+axes[0,1].set_ylabel('Profit ($)')
+
+# Panel 3: Customer growth (area chart)
+axes[1,0].fill_between(months, customers, alpha=0.3, color='blue')
+axes[1,0].plot(months, customers, 'b-o')
+axes[1,0].set_title('Customer Growth')
+axes[1,0].set_ylabel('Customers')
+
+# Panel 4: Revenue distribution (pie chart)
+axes[1,1].pie(revenue, labels=months, autopct='%1.1f%%')
+axes[1,1].set_title('Revenue Distribution')
+
+plt.tight_layout()
+plt.savefig('dashboard.png', dpi=150)
+plt.show()
+\`\`\`
+
+Try customizing colors, adding gridlines, and annotating key data points!
+
           `
         },
         {
@@ -2110,6 +2402,49 @@ plt.show()
 </warning>
 
 Seaborn makes beautiful statistical visualizations effortless! ✨
+### 🎯 Practice Exercise
+
+**Exercise: Statistical Visualization with Seaborn**
+
+\`\`\`python
+import seaborn as sns
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Create a realistic dataset
+np.random.seed(42)
+n = 200
+df = pd.DataFrame({
+    'study_hours': np.random.normal(5, 2, n).clip(0, 12),
+    'sleep_hours': np.random.normal(7, 1.5, n).clip(3, 12),
+    'exam_score': np.random.normal(75, 12, n).clip(0, 100),
+    'grade_level': np.random.choice(['Freshman', 'Sophomore', 'Junior', 'Senior'], n)
+})
+df['exam_score'] += df['study_hours'] * 3  # Add correlation
+
+# Challenge 1: Create a pairplot colored by grade level
+sns.pairplot(df, hue='grade_level', palette='Set2')
+plt.suptitle('Student Performance Relationships', y=1.02)
+plt.show()
+
+# Challenge 2: Create a heatmap of correlations
+plt.figure(figsize=(8, 6))
+corr = df.select_dtypes(include=[np.number]).corr()
+sns.heatmap(corr, annot=True, cmap='coolwarm', center=0)
+plt.title('Correlation Heatmap')
+plt.show()
+
+# Challenge 3: Box plot of exam scores by grade level
+plt.figure(figsize=(8, 5))
+sns.boxplot(data=df, x='grade_level', y='exam_score', 
+            order=['Freshman', 'Sophomore', 'Junior', 'Senior'])
+plt.title('Exam Scores by Grade Level')
+plt.show()
+\`\`\`
+
+**Bonus:** Create a violin plot comparing study hours across grade levels and add a swarm plot overlay.
+
           `
         }
       ]
@@ -2321,6 +2656,52 @@ for cat_col in categorical_cols:
 </warning>
 
 EDA reveals the story hidden in your data! 📖
+### 🎯 Practice Exercise
+
+**Exercise: Complete EDA on a Dataset**
+
+\`\`\`python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create a sample e-commerce dataset
+np.random.seed(42)
+n = 500
+df = pd.DataFrame({
+    'customer_age': np.random.normal(35, 12, n).astype(int).clip(18, 70),
+    'purchase_amount': np.random.lognormal(4, 0.8, n).round(2),
+    'items_bought': np.random.poisson(3, n) + 1,
+    'category': np.random.choice(['Electronics', 'Clothing', 'Books', 'Home'], n),
+    'is_return': np.random.choice([True, False], n, p=[0.15, 0.85])
+})
+
+# Step 1: Quick overview
+print("Shape:", df.shape)
+print("\nData Types:\n", df.dtypes)
+print("\nDescribe:\n", df.describe())
+print("\nNull counts:\n", df.isnull().sum())
+
+# Step 2: Distribution analysis
+fig, axes = plt.subplots(1, 3, figsize=(15, 4))
+df['customer_age'].hist(ax=axes[0], bins=20, color='skyblue')
+axes[0].set_title('Age Distribution')
+df['purchase_amount'].hist(ax=axes[1], bins=30, color='salmon')
+axes[1].set_title('Purchase Amount Distribution')
+df['items_bought'].hist(ax=axes[2], bins=10, color='lightgreen')
+axes[2].set_title('Items Bought Distribution')
+plt.tight_layout()
+plt.show()
+
+# Step 3: Key insight - return rate by category
+return_rate = df.groupby('category')['is_return'].mean() * 100
+print("\nReturn Rate by Category:")
+print(return_rate.sort_values(ascending=False))
+\`\`\`
+
+Document 3 insights you discover and suggest 2 business actions based on the data!
+
           `
         },
         {
@@ -2563,6 +2944,50 @@ print(generate_eda_summary(df, target='sales'))
 </warning>
 
 EDA is an iterative process — keep exploring! 🔄
+### 🎯 Practice Exercise
+
+**Exercise: Advanced EDA Techniques**
+
+\`\`\`python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create time-series dataset
+dates = pd.date_range('2023-01-01', '2024-12-31', freq='D')
+np.random.seed(42)
+df = pd.DataFrame({
+    'date': dates,
+    'sales': np.random.normal(1000, 200, len(dates)) + 
+             np.sin(np.arange(len(dates)) * 2 * np.pi / 365) * 300,
+    'website_visits': np.random.poisson(500, len(dates)),
+})
+df['conversion_rate'] = (df['sales'] / df['website_visits'] / 10).clip(0.01, 0.15)
+
+# Challenge 1: Rolling averages
+df['sales_7d_avg'] = df['sales'].rolling(7).mean()
+df['sales_30d_avg'] = df['sales'].rolling(30).mean()
+
+plt.figure(figsize=(14, 5))
+plt.plot(df['date'], df['sales'], alpha=0.3, label='Daily')
+plt.plot(df['date'], df['sales_7d_avg'], label='7-day avg')
+plt.plot(df['date'], df['sales_30d_avg'], label='30-day avg', linewidth=2)
+plt.legend()
+plt.title('Sales Trend with Rolling Averages')
+plt.show()
+
+# Challenge 2: Month-over-month comparison
+df['month'] = df['date'].dt.month
+df['year'] = df['date'].dt.year
+monthly = df.groupby(['year', 'month'])['sales'].sum().unstack(0)
+monthly.plot(kind='bar', figsize=(12, 5))
+plt.title('Monthly Sales Comparison: 2023 vs 2024')
+plt.show()
+\`\`\`
+
+**Bonus:** Calculate the correlation between website visits and sales, and determine the lag that maximizes correlation.
+
           `
         }
       ]
@@ -2750,6 +3175,40 @@ print(detailed_stats)
 </warning>
 
 Descriptive statistics are the foundation of data understanding! 📊
+### 🎯 Practice Exercise
+
+**Exercise: Descriptive Statistics in Action**
+
+\`\`\`python
+import pandas as pd
+import numpy as np
+from scipy import stats
+
+# Sample dataset: exam scores from two classes
+np.random.seed(42)
+class_a = np.random.normal(78, 10, 30).clip(0, 100).round(1)
+class_b = np.random.normal(82, 8, 30).clip(0, 100).round(1)
+
+# Challenge 1: Calculate all descriptive stats for both classes
+for name, data in [('Class A', class_a), ('Class B', class_b)]:
+    print(f"\n{name}:")
+    print(f"  Mean: {np.mean(data):.1f}")
+    print(f"  Median: {np.median(data):.1f}")
+    print(f"  Mode: {stats.mode(data, keepdims=True).mode[0]:.1f}")
+    print(f"  Std Dev: {np.std(data):.1f}")
+    print(f"  Skewness: {stats.skew(data):.3f}")
+    print(f"  Kurtosis: {stats.kurtosis(data):.3f}")
+    print(f"  IQR: {np.percentile(data, 75) - np.percentile(data, 25):.1f}")
+
+# Challenge 2: Which class has more consistent scores?
+print(f"\nCoefficient of Variation:")
+print(f"  Class A: {np.std(class_a)/np.mean(class_a)*100:.1f}%")
+print(f"  Class B: {np.std(class_b)/np.mean(class_b)*100:.1f}%")
+print("Lower CV = more consistent")
+\`\`\`
+
+**Bonus:** Create a side-by-side box plot and histogram for both classes.
+
           `
         },
         {
@@ -2932,6 +3391,48 @@ print(f"Eta-squared: {eta2:.3f}")
 </warning>
 
 Hypothesis testing helps you make confident, data-driven decisions! 🎲
+### 🎯 Practice Exercise
+
+**Exercise: Hypothesis Testing Practice**
+
+\`\`\`python
+import numpy as np
+from scipy import stats
+
+# Scenario: A/B test for a website button color
+np.random.seed(42)
+
+# Group A (blue button): 1000 visitors, conversion rate ~5%
+group_a = np.random.binomial(1, 0.05, 1000)
+
+# Group B (green button): 1000 visitors, conversion rate ~6.5%
+group_b = np.random.binomial(1, 0.065, 1000)
+
+print(f"Group A conversion: {group_a.mean()*100:.1f}%")
+print(f"Group B conversion: {group_b.mean()*100:.1f}%")
+
+# Challenge 1: Two-sample t-test
+t_stat, p_value = stats.ttest_ind(group_a, group_b)
+print(f"\nt-test: t={t_stat:.3f}, p={p_value:.4f}")
+print(f"Significant at 0.05? {'Yes' if p_value < 0.05 else 'No'}")
+
+# Challenge 2: Chi-square test for proportions
+from scipy.stats import chi2_contingency
+table = [[group_a.sum(), len(group_a) - group_a.sum()],
+         [group_b.sum(), len(group_b) - group_b.sum()]]
+chi2, p_chi, dof, expected = chi2_contingency(table)
+print(f"\nChi-square: χ²={chi2:.3f}, p={p_chi:.4f}")
+
+# Challenge 3: Calculate effect size (Cohen's h)
+import math
+p1, p2 = group_a.mean(), group_b.mean()
+h = 2 * (math.asin(math.sqrt(p2)) - math.asin(math.sqrt(p1)))
+print(f"\nEffect size (Cohen's h): {h:.3f}")
+print(f"Effect: {'Small' if abs(h) < 0.3 else 'Medium' if abs(h) < 0.5 else 'Large'}")
+\`\`\`
+
+Try changing the sample sizes and conversion rates to see how they affect statistical significance!
+
           `
         }
       ]
@@ -3235,6 +3736,48 @@ Congratulations! You've completed a full data science project! 🎉
 \`\`\`
 
 Keep practicing with new datasets and problems! 🚀
+### 🎯 Practice Exercise
+
+**Exercise: Your Own Data Science Project**
+
+Apply everything you've learned! Follow these steps:
+
+1. **Find a dataset** — Try [kaggle.com/datasets](https://kaggle.com/datasets)
+2. **Define 3 questions** you want to answer
+3. **Load and explore** the data with Pandas
+4. **Clean** any messy data (missing values, outliers)
+5. **Visualize** key patterns with Matplotlib/Seaborn
+6. **Analyze** with statistics
+7. **Present** your findings
+
+\`\`\`python
+# Project template
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Step 1: Load your data
+# df = pd.read_csv('your_dataset.csv')
+
+# Step 2: Initial exploration
+# print(df.shape, df.dtypes, df.describe())
+
+# Step 3: Clean data
+# Handle missing values, outliers, type conversions
+
+# Step 4: EDA and visualization
+# Create at least 5 different charts
+
+# Step 5: Statistical analysis
+# Test at least one hypothesis
+
+# Step 6: Write your conclusions
+# What did you find? What actions do you recommend?
+\`\`\`
+
+Share your project on GitHub or Kaggle to build your portfolio!
+
           `
         }
       ]
